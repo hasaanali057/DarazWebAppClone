@@ -6,7 +6,7 @@ import SectionTop from '../components/sectionTop/page'
 const HomePage = () => {
   return (
     <>
-      <NavBar/>
+      <NavBar className='' url='#'/>
       <Slider/>
       <SectionTop/>
     </>

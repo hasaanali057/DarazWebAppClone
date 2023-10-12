@@ -4,7 +4,12 @@ import { BsSearch } from 'react-icons/bs';
 import { IoPersonOutline } from 'react-icons/io5';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 
-const NavBar = ({className}: any) => {
+interface x {
+  className: string;
+  url: string;
+}
+
+const NavBar = ({className, url}: x) => {
   return (
     <div className={className}>
     { /*Top Bar Div*/ }
@@ -19,9 +24,9 @@ const NavBar = ({className}: any) => {
       { /*Bottom Bar Div*/ }
       <div className='w-100% search-bar pt-2 flex bg-orange-550'>
         <div className='pl-85 pr-85 flex flex-row gap-5 items-center h-14 w-100%'>
-          <a href='#' className='logo'>
-            <img src='logoTop.png' alt='logoTop' className='h-LogoImageHeight w-LogoImageWidth' />
-          </a>
+          <Link href={url} className='logo'>
+            <img src='/logoTop.png' alt='logoTop' className='h-LogoImageHeight w-LogoImageWidth' />
+          </Link>
           <form className='flex items-center flex-grow'>
             <input
               className='text-sm block flex-grow h-SearchHeight py-13 px-19 leading-normal bg-white text-gray-800 border border-gray-200 rounded-xl me-2 focus:outline-none'
@@ -35,19 +40,19 @@ const NavBar = ({className}: any) => {
           </form>
           <a href=''><i className='fa-solid fa-cart-arrow-down'></i></a>
           <a href=''><img src='' alt='' /></a>
-          <div className='flex flex-row gap-2 select-none font-normal py-1 px-2 leading-normal no-underline   h-SearchHeight rounded-md hover:bg-orange-650'>
-            <Link href='' className='font-medium text-white flex'>
+          <Link href='/pages/signin' className='font-medium text-white flex'>
+            <div className='flex flex-row gap-2 select-none font-normal py-1 px-2 leading-normal no-underline   h-SearchHeight rounded-md hover:bg-orange-650'>
               <IoPersonOutline size={ '20px' } color='#fff' />
               Login
-            </Link>
-          </div>
-
-          <div className='flex flex-row gap-2 select-none font-normal py-1 px-2 leading-normal no-underline   h-SearchHeight rounded-md hover:bg-orange-650'>
+            </div>
+          </Link>
+          
           <Link href='' className='font-medium text-white flex'>
-            <IoPersonOutline size={ '20px' } color='#fff' /> 
-            Signup</Link>
-          </div>
-            
+            <div className='flex flex-row gap-2 select-none font-normal py-1 px-2 leading-normal no-underline   h-SearchHeight rounded-md hover:bg-orange-650'>
+              <IoPersonOutline size={ '20px' } color='#fff' /> 
+              Signup
+            </div>
+          </Link>
           <div className='flex flex-row gap-2 select-none font-normal py-1 px-2 leading-normal no-underline   h-SearchHeight rounded-md hover:bg-orange-650'>
             <Link href='' className='font-medium text-white'> 
               <AiOutlineShoppingCart size={ '27px' } color='#fff' /> 

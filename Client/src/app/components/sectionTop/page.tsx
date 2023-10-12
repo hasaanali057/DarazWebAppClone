@@ -19,7 +19,6 @@ const SectionTop = () => {
             {items.map((item, index) => (
               <>
                 <ListItem key={index} imgSrc={item.imgSrc} text={item.text} url= {item.url}/>
-                
               </>
             ))}
           </ul>
@@ -29,4 +28,4 @@ const SectionTop = () => {
   )
 }
 
-export default SectionTop
+export default SectionTop;
