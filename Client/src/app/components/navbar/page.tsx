@@ -15,15 +15,15 @@ const NavBar = ({className, url}: x) => {
     { /*Top Bar Div*/ }
       <div className='topBar'>
         <div className=' pl-85 pr-85 flex flex-row bg-orange-550 text-gray-50 text-xs gap-8'>
-          <a href='' className='nav_link'>Become a Seller</a>
-          <a href='' className='nav_link'>Daraz Affiliate Program</a>
-          <a href='' className='nav_link'>Help and Support</a>
+          <a href='#' className='nav_link'>Become a Seller</a>
+          <a href='#' className='nav_link'>Daraz Affiliate Program</a>
+          <a href='#' className='nav_link'>Help and Support</a>
         </div>
       </div>
 
       { /*Bottom Bar Div*/ }
-      <div className='w-100% search-bar pt-2 flex bg-orange-550'>
-        <div className='pl-85 pr-85 flex flex-row gap-5 items-center h-14 w-100%'>
+      <div className='w-full search-bar pt-2 flex bg-orange-550'>
+        <div className='pl-85 pr-85 flex flex-row gap-5 items-center h-14 w-full'>
           <Link href={url} className='logo'>
             <img src='/logoTop.png' alt='logoTop' className='h-LogoImageHeight w-LogoImageWidth' />
           </Link>
@@ -38,8 +38,6 @@ const NavBar = ({className, url}: x) => {
               <BsSearch size={ '15px' } color='#FA8950' />
             </button>
           </form>
-          <a href=''><i className='fa-solid fa-cart-arrow-down'></i></a>
-          <a href=''><img src='' alt='' /></a>
           <Link href='/pages/signin' className='font-medium text-white flex'>
             <div className='flex flex-row gap-2 select-none font-normal py-1 px-2 leading-normal no-underline   h-SearchHeight rounded-md hover:bg-orange-650'>
               <IoPersonOutline size={ '20px' } color='#fff' />
@@ -54,7 +52,7 @@ const NavBar = ({className, url}: x) => {
             </div>
           </Link>
           <div className='flex flex-row gap-2 select-none font-normal py-1 px-2 leading-normal no-underline   h-SearchHeight rounded-md hover:bg-orange-650'>
-            <Link href='' className='font-medium text-white'> 
+            <Link href='#' className='font-medium text-white'> 
               <AiOutlineShoppingCart size={ '27px' } color='#fff' /> 
             </Link>
           </div>

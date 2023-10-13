@@ -1,16 +1,17 @@
 // Importing nestCommon modules
-import { Controller, Get, Post } from "@nestjs/common";
+import { Body, Controller, Get, Post, Req } from "@nestjs/common";
 
 // Importing AuthServices
 import { AuthService } from "./auth.service";
+import { Customer } from "./user.entity";
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authServices: AuthService) {}
 
   @Get('signin')
-  signIn() {
-    return this.authServices.getUser();
+  signIn(@Body() data: { emailPhone: string, password: string } ) {
+    return this.authServices.getUser(data.emailPhone, data.password);
   }
 
   @Post('signup')
