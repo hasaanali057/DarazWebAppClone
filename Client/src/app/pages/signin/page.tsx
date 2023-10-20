@@ -5,27 +5,28 @@ import Link from 'next/link';
 import { PiEye, PiEyeClosed } from 'react-icons/pi';
 import Input from '@/app/components/input/page';
 import Button from '@/app/components/button/page';
-import { NextResponse } from 'next/server';
 import { useFormik } from 'formik';
-
+import { useRouter } from 'next/navigation'
 
 import * as Yup from 'yup';
+import axios from 'axios';
 const signinSchema = Yup.object({
-  emailPhone: Yup.string().email().required('Email is Required'),
+  email: Yup.string().email().required('Email is Required'),
   password: Yup.string().min(8).required('Password is Required')
 })
 
 interface formValues {
-  emailPhone: string;
+  email: string;
   password: string;
 }
 
 const initialValues: formValues = {
-  emailPhone: '',
+  email: '',
   password: ''
 }
 
 const SignIn = () => {
+  const navigate = useRouter();
 
   const { 
     values,
@@ -37,27 +38,24 @@ const SignIn = () => {
   } = useFormik({
     initialValues: initialValues,
     validationSchema: signinSchema,
-    onSubmit: (values) => {
-      fetch('http://localhost:4000/auth/signin')
-        .then(( NextResponse) => {
-          if( !NextResponse.ok){
-            throw new Error('Response Error')
-          }
-          return NextResponse.json();
+    onSubmit: async (values, action) => {
+      try {
+        const response =await axios.post('http://localhost:4000/auth/signin',{
+          email: values.email,
+          password: values.password
         })
-        .then((data: any) => {
-          console.log(data);
-        })
-        .catch((error: Error) => {
-          console.log('Fetch Error:->', error);
-        });
+        console.log(response);
+        if(response.data.status != 201 ){
+          throw new Error('SignIn Failed');
+        }
+        navigate.push('/');
+      } catch (error) {
+        console.log('Axios Error', error)
+      }
+      action.resetForm();
+      return;
     }
   })
-
-  
-
-  // const [emailPhone, setEmailPhone] = useState('');
-  // const [password, setPassword] = useState('');
   
   const [passwordFlag, setPasswordFlag] = useState(false);
   
@@ -85,14 +83,14 @@ const SignIn = () => {
                     label='Phone Number or Email*'
                     placeholder='Please Enter Your Email or Phone'
                     type='text'
-                    value={ values.emailPhone }
+                    value={ values.email }
                     onChange={ handleChange }
                     onBlur ={ handleBlur } 
-                    name='emailPhone' 
-                    id='emailPhone'   
+                    name='email' 
+                    id='email'   
                   />
-                  { errors.emailPhone && touched.emailPhone ? 
-                    <p className='text-xs text-red-600'>{errors.emailPhone}</p>:
+                  { errors.email && touched.email ? 
+                    <p className='text-xs text-red-600'>{errors.email}</p>:
                     null
                   }
                 </div>

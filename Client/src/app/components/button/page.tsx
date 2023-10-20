@@ -1,4 +1,6 @@
-import React, { ButtonHTMLAttributes, MouseEventHandler } from 'react'
+import { useSession } from 'next-auth/react';
+import Link from 'next/link';
+import React, { MouseEventHandler } from 'react'
 
 interface buttonProps {
   type: 'button' | 'submit' | 'reset';
@@ -8,6 +10,17 @@ interface buttonProps {
 }
 
 const Button = ({ type, className, label, onClick}: buttonProps) => {
+  const { data: session } = useSession();
+  if(session && session.user){
+    return (
+      <div className=''>
+        <p className=''>{session.user.name}</p>
+        <Link href={''} className=''>
+          Sign Out
+        </Link>
+      </div>
+    )  
+  }
   return (
     <>
       <button 
